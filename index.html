@@ -27,6 +27,20 @@
   clear: both;
   display: table;
 }
+img {
+  max-width: 100%;
+  max-height:100%;
+}
+.text {
+  font-size: 20px;
+  padding-left: 0px;
+}
+.container0 {
+  display: grid;
+  align-items: center;
+  grid-template-columns: 1fr 1fr;
+column-gap: 0px;
+}
 		</style>	
 	</head>
 	<body class="is-preload">
@@ -72,32 +86,41 @@
 							<article class="post featured">
 								<div class="row" style="background-color:powderblue;">
 									<div class="column" style="background-color:white;">
-										<a href="https://univ-cotedazur.eu/"><img src="images/UCA-Logo.jpg" alt="uca" style="width:70%" ></a>
+										<img src="images/UCA-Logo.jpg" alt="uca" style="width:70%" >
 									</div>
 									<div class="column" style="background-color:white;">
-										<a href="https://www.cnrs.fr/fr"><img src="images/LOGO_CNRS.jpg" alt="cnrs" style="width:50%" ></a>
+										<img src="images/LOGO_CNRS.jpg" alt="cnrs" style="width:50%" >
 									</div>
 									<div class="column" style="background-color:white;">
-										<a href="https://www.inria.fr/en"><img src="images/inria.png" alt="inria" style="width:50%" ></a>
+										<img src="images/inria.png" alt="inria" style="width:50%" >
 									</div>
 									<div class="column" style="background-color:white;">
-										<a href="https://www.nxp.com/"><img src="images/nxp.png" alt="nxp" style="width:50%" ></a>
+										<img src="images/nxp.png" alt="nxp" style="width:50%" >
 									</div>
 								</div>
 								<hr>
 
-								<header class="major">
-									<!--<span class="date">April 25, 2017</span>-->
-									<h1 style="font-size:2em; "><a href="#">Mansour Mayaki</a></h1>
-									<h1 style="font-size:1em; ">Phd Student in Computer science and Artificial intelligence</h1>
-									<p>Time series anomaly detection using Machine learning. Application to predictive maintenance in embedded systems.</p>
-								</header>
-								<!--<a href="#" class="image main"><img src="images/profileimage.jpg" alt=""  /></a>-->
-								<img
-								class="profile-image"
-								src="images/profileimage.jpg"
-								alt="" width="30%" height="20%"
-							  />
+								<body> 
+									<div class="container0">
+										<div class="image">
+											<!--<a href="#" class="image main"><img src="images/profileimage.jpg" alt=""  /></a>-->
+											<img
+											class="profile-image"
+											src="images/profileimage.jpg"
+											alt="" width="80%" height="50%"
+											/>
+										</div>
+										<div class="text">
+											<!--<span class="date">April 25, 2017</span>-->
+											<h1 style="font-size:2em; ">Mansour Mayaki</h1>
+											<h1 style="font-size:15px; ">Phd Student in Computer science and Artificial intelligence</h1>
+											<p style="font-size: 20px">Time series anomaly detection using Machine learning. 
+												Application to predictive maintenance in embedded systems.</p>
+										</div>
+
+									</div>
+								</body>
+								
 							  <!--
 								<ul class="actions special">
 									<li><a href="#" class="button large">Full Story</a></li>
@@ -217,6 +240,45 @@
 
 							 </section>								
 						  </section>
+						  				<!-- Projects -->
+
+						</section>
+							<section id="Projects" class="project-container container" >
+							</p>
+							<h2>Projects </h2>
+							<p>
+							<ul>
+								<div class="first">
+									<li><a ><strong>Medicare fraud detection: INRIA and Pro BTP Groupe</strong> </a></li>
+									<p >
+										Medicare fraud detection using machine learning based models.
+										The aims is to “predict potentially fraudulent claims” 
+										made by healthcare providers to an insurance company (<a href="https://groupe.probtp.com/accueil.html"><textcolor>Pro BTP Groupe</textcolor></a>) on behalf of their patients. 
+										We also "predict potentially fraudulent suppliers" based on complaints filed by them.
+									</p>
+									</div>
+									<div class="first">
+										<li><a ><strong>Identifying and Counting Industrial Gas Cylinders with Computer Vision: ENSAI and AIR Liquide</strong> </a></li>
+										<p >
+											Developed a deep learning model that Identifies and Counts Industrial Gas Cylinders.
+										</p>
+										</div>
+										<div class="first">
+											<li><a ><strong>Generative Adversarial Networks (GANs)</strong> </a></li>
+											<p >
+												Theoretical analysis and applications of GANs. The goal of this project 
+												was to understand the underlying concepts of GANs and to make some applications.
+											</p>
+											</div>
+											<div class="first">
+												<li><a ><strong>Building a recommander system</strong> </a></li>
+												<p >
+													Build a product recommendation engine for Orange France customers using R and Python.
+												</p>
+												</div>
+			
+							</ul>
+						</section>
 				<!-- Conferences -->
 
 							</section>
