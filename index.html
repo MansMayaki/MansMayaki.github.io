@@ -1,333 +1,368 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- Primary Meta Tags -->
-    <title>Portfolio Template - Open source</title>
-    <meta name="title" content="Portfolio Template - Open source" />
-    <meta
-      name="description"
-      content="Build or customize your portfolio website using this super easy template. Free to use if you are a member of the community or a contributor to this project"
-    />
+<!DOCTYPE HTML>
+<!--
+	Massively by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Mansour</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+			<style>
+		body {
+		background-color: PeachPuff;
+		}
+		.column {
+  float: left;
+  width: 33.33%;
+  padding: 5px;
+}
 
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website" />
-    <meta
-      property="og:url"
-      content="https://github.com/MansMayaki/MansMayaki.github.io"
-    />
-    <meta property="og:title" content="Portfolio Template - Open source" />
-    <meta
-      property="og:description"
-      content="Build or customize your portfolio website using this super easy template. Free to use if you are a member of the community or a contributor to this project"
-    />
-    <meta
-      property="og:image"
-      content="https://user-images.githubusercontent.com/62628408/150613011-b78a7f5a-0af1-4312-aab0-0022e7258693.png"
-    />
+/* Clear floats after image containers */
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+		</style>	
+	</head>
+	<body class="is-preload">
 
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta
-      property="twitter:url"
-      content="https://github.com/MansMayaki/MansMayaki.github.io"
-    />
-    <meta property="twitter:title" content="Portfolio Template - Open source" />
-    <meta
-      property="twitter:description"
-      content="Build or customize your portfolio website using this super easy template. Free to use if you are a member of the community or a contributor to this project"
-    />
-    <meta
-      property="twitter:image"
-      content="https://user-images.githubusercontent.com/62628408/150613011-b78a7f5a-0af1-4312-aab0-0022e7258693.png"
-    />
+		<!-- Wrapper -->
+			<div id="wrapper" class="fade-in">
 
-    <!-- Link -->
-    <link
-      rel="apple-touch-icon"
-      sizes="180x180"
-      href="assets/favicon/apple-touch-icon.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="16x16"
-      href="/assets/favicon/favicon-16x16.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="32x32"
-      href="assets/favicon/favicon-32x32.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="192x192"
-      href="assets/favicon/android-chrome-192x192.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="512x512"
-      href="assets/favicon/android-chrome-512x512.png"
-    />
-    <link rel="icon" type="image/x-icon" href="assets/favicon/favicon.ico" />
-    <link rel="manifest" href="assets/favicon/site.webmanifest" />
-    <link
-      rel="stylesheet"
-      href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
-      integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm"
-      crossorigin="anonymous"
-    />
-    <link rel="stylesheet" href="css/style.css" />
-    <link rel="stylesheet" href="css/utilities.css" />
-  </head>
-  <body>
-    <header id="hero">
-      <!-- Navbar -->
-      <nav class="navbar">
-        <div class="container">
-          <!-- Logo -->
-          <h1 id="logo">
-            <a href="https://github.com/MansMayaki/MansMayaki.github.io"
-              ><img src="./assets/logo.png" alt="Your Logo"
-            /></a>
-          </h1>
-          <!-- Navbar links -->
-          <ul class="nav-menu">
-            <li><a class="nav-link" href="#current">Currently</a></li>
-            <li><a class="nav-link" href="#projects">PROJECTS</a></li>
-            <li><a class="nav-link" href="#">CONTACT</a></li>
-            <li><a class="nav-link" href="#">BlOG</a></li>
-            <li>
-              <a
-                class="nav-link btn btn-primary"
-                href="https://github.com/MansMayaki/MansMayaki.github.io"
-                >RESUME <i class="fas fa-arrow-right"></i
-              ></a>
-            </li>
+				<!-- Intro -->
+				<!--
+					<div id="intro">
+						<h1>This is<br />
+						Massively</h1>
+						<p>A free, fully responsive HTML5 + CSS3 site template designed by <a href="https://twitter.com/ajlkn">@ajlkn</a> for <a href="https://html5up.net">HTML5 UP</a><br />
+						and released for free under the <a href="https://html5up.net/license">Creative Commons license</a>.</p>
+						<ul class="actions">
+							<li><a href="#header" class="button icon solid solo fa-arrow-down scrolly">Continue</a></li>
+						</ul>
+					</div>
+				-->
+				<!-- Header -->
+				
+					<header id="header">
 
-            <!-- Toggle switch -->
-            <div class="theme-switch">
-              <input type="checkbox" id="switch" />
-              <label class="toggle-icons" for="switch">
-                <img class="moon" src="assets/moon.svg" />
-                <img class="sun" src="assets/sun.svg" />
-              </label>
-            </div>
-            <!-- Hamburger menu -->
-          </ul>
-          <div class="hamburger">
-            <span class="bar"></span>
-            <span class="bar"></span>
-            <span class="bar"></span>
-          </div>
-        </div>
-      </nav>
+					</header>
 
-      <section class="header-container">
-        <img
-          class="profile-image"
-          src="assets/profile-image.jpg"
-          alt=""
-        />
-        <h1>Hi I'm Mansour</h1>
 
-        <div class="content-text">
-          <h2>Phd Student in Computer science </h2>
+				<!-- Nav -->
+				<!--
+					<nav id="nav">
+						<ul class="links">
+							<li class="active"><a href="index.html">This is Massively</a></li>
+							<li><a href="generic.html">Generic Page</a></li>
+							<li><a href="elements.html">Elements Reference</a></li>
+						</ul>
+						<ul class="icons">
+							<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+							<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+							<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+							<li><a href="#" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+						</ul>
+					</nav>
+				-->
+				<!-- Main -->
+					<div id="main">
 
-          <p>
-            Time series anomaly detection : Application to predictive maintenance in embedded systems.
-          </p>
-        </div>
-        <a
-          href="https://github.com/MansMayaki/MansMayaki.github.io"
-          class="btn btn-secondary"
-          target="_blank"
-          >Connect With Me</a
-        >
-      </section>
-    </header>
+						<!-- Featured Post -->
+							<article class="post featured">
+								<div class="row" style="background-color:powderblue;">
+									<div class="column" style="background-color:white;">
+										<img src="images/UCA-Logo.jpg" alt="uca" style="width:70%" >
+									</div>
+									<div class="column" style="background-color:white;">
+										<img src="images/LOGO_CNRS.jpg" alt="cnrs" style="width:50%" >
+									</div>
+									<div class="column" style="background-color:white;">
+										<img src="images/inria.png" alt="inria" style="width:50%" >
+									</div>
+								</div>
+								<hr>
 
-    <section id="currently" class="project-container container" >
-      <h1>Current status </h1>
-      <p>
-        Hi I am Mansour MAYAKI. I am 3rd year phd student in computer science at Université Côte d'Azur in France.
-        I am currently working on time series anomaly detection using deep neural networks and application to predictive 
-        maintenance in embedded systems.
-      
-      </p>
-      <h1>My reasearch interest are </h1>
-        <ul>
-          <li>Machine learning and Statistical  methods for
-              <ul>
-                  <li>Drift Detection</li>
-                  <li>Anomaly detection</li>
-                  <li>Time series analysis</li>
-              </ul>
-          </li> Embedded AI: Collaboration with NXP Semiconductors
-      </ul>
-    </section>
-    <section id="About me" class="project-container container" >
-      <h1>About me </h1>
-      <p>
-        After the baccalaureate, I obtained an engineering degree in statistics at ENSAE Dakar (In Senegal). 
-        Then I obtained a scholarship to continue at École Nationale de la Statistique et de l'Analyse de l'Information
-         (ENSAI Rennes, France) where I obtained an engineering 
-        degree in statistics and data science. In parallel I obtained a master's 
-        degree in fundamental mathematics at Rennes 1 University (Rennes, France). 
-      </p>
-      <h1>Full CV </h1>
-      <p>
-        See my detailed CV for more details 
+								<header class="major">
+									<!--<span class="date">April 25, 2017</span>-->
+									<h1 style="font-size:2em; "><a href="#">Mansour Mayaki</a></h1>
+									<h1 style="font-size:1em; ">Phd Student in Computer science </h1>
+									<p>Time series anomaly detection : Application to predictive maintenance in embedded systems.</p>
+								</header>
+								<!--<a href="#" class="image main"><img src="images/profileimage.jpg" alt=""  /></a>-->
+								<img
+								class="profile-image"
+								src="images/profileimage.jpg"
+								alt="" width="30%" height="20%"
+							  />
+							  <!--
+								<ul class="actions special">
+									<li><a href="#" class="button large">Full Story</a></li>
+								</ul>
+							-->
+							</article>
+							<section id="currently" class="project-container container" >
+								<h1>Current status </h1>
+								<p>
+								  Hi I am Mansour MAYAKI. I am 3rd year phd student in computer science at Université Côte d'Azur in France.
+								  I am currently working on time series anomaly detection using deep neural networks and application to predictive 
+								  maintenance in embedded systems.
+								
+								</p>
+								<h1>My reasearch interest are </h1>
+								<ul>
+								  <li>
+									Machine learning and Statistical  methods for
+									<!-- Look, the closing </li> tag is not placed here! -->
+									<ul>
+										<li>Drift Detection</li>
+										<li>Anomaly detection</li>
+										<li>Time series analysis</li>
+									</ul>
+									<!-- Here is the closing </li> tag -->
+								  </li>
+								  <li>Embedded AI: Collaboration with NXP Semiconductors</li>
+								</ul>
+								</h1>
+								<section id="About me" class="project-container container" >
+									<h1>About me </h1>
+									<p>
+									  After the baccalaureate, I obtained an engineering degree in statistics at ENSAE Dakar (In Senegal). 
+									  Then I obtained a scholarship to continue at École Nationale de la Statistique et de l'Analyse de l'Information
+									   (ENSAI Rennes, France) where I obtained an engineering 
+									  degree in statistics and data science. In parallel I obtained a master's 
+									  degree in fundamental mathematics at Rennes 1 University (Rennes, France). 
+									</p>
+									<h1>Full CV </h1>
+									<p>
+									  See my detailed CV for more  
+									  <a href="https://github.com/MansMayaki/MansMayaki.github.io/blob/main/assets/CV.pdf"><strong><font color="green">Full CV</font></strong></a>	
+									</p>
+								 </section>	
+						<!-- Published papers -->
+						<head>
+							<style>
+							div {
+							  background-color: lightgray;
+							}
+							
+							div.first {
+							  opacity: 0.9;
+							}
+							textcolor {
+							color: brown;
+							}
 
-        <embed src="https://github.com/MansMayaki/MansMayaki.github.io/assets/CV.pdf" height="850px"/>
+							</style>
+							</head>
+							  </section>
+							  <section id="Published papers" class="project-container container" >
+							</p>
+							<h1>Published papers </h1>
+							<p>
+								<ul>
+									<div class="first">
+									<li><a href="https://ieeexplore.ieee.org/document/9892066"><strong>Autoregressive based Drift Detection Method</strong> </a></li>
+									<p >
+										Mayaki, M. Z. A., & Riveill, M. (2022). Autoregressive based Drift Detection Method. 2022 International Joint Conference on Neural Networks (IJCNN), 1–8. https://doi.org/10.1109/IJCNN55064.2022.9892066
+										<br />
+										 |<a href="https://ieeexplore.ieee.org/document/9892066"><strong><textcolor>Published version</textcolor></strong> </a>|
+									</p>
+							
+								</div>
+								<div class="first">
+									<li><a href="https://hal.science/hal-03967924"><strong>Machinery Anomaly Detection using artificial neural networks  and signature feature extraction</strong></a></li>
+									<p>
+										Zoubeirou a Mayaki, M., & Riveill, M. (2023). Machinery Anomaly Detection using artificial neural networks and signature feature extraction. https://hal.science/hal-03967924
+										<br />
+										|<a href="https://hal.science/hal-03967924"><strong><textcolor>Published version</textcolor></strong> </a>|
 
-      </p>
-   </section>
+									</p>
+								</div>
+								<div class="first">
+									<li><a href="https://arxiv.org/abs/2305.18389"><strong>AnoRand: A Semi Supervised Deep Learning Anomaly Detection Method by Random Labeling</strong> (Preprint,In per reviewing...)</a></li>
+									<p>
+										Mayaki, M. Z. A., & Riveill, M. (2023). AnoRand: A Semi Supervised Deep Learning Anomaly Detection Method by Random Labeling. ArXiv Preprint ArXiv:2305.18389.
+										<br />
+										|<a href="https://arxiv.org/abs/2305.18389"><strong><textcolor>Arxiv version</textcolor></strong> </a>|
 
-    <!-- Projects -->
-    <section id="projects" class="project-container container">
-      <div class="division"></div>
-      <div class="content-text">
-        <h2>Projects</h2>
-        <p>Check out some of my personal and paid projects</p>
-      </div>
+									</p>
+								</div>
+									<div class="first">
+									<li><a href="https://ieeexplore.ieee.org/document/10037065"><strong>Multiple Inputs Neural Networks for Fraud Detection</strong></a></li>
+									<p>
+										Mayaki, M. Z. A., & Riveill, M. (2022). Multiple Inputs Neural Networks for Fraud Detection. 2022 International Conference on Machine Learning, Control, and Robotics (MLCR), 8–13. https://doi.org/10.1109/MLCR57210.2022.00011 China.
+										<br />
+										|<a href="https://ieeexplore.ieee.org/document/10037065"><strong><textcolor>Published version</textcolor></strong> </a>|
 
-      <article class="project">
-        <!-- Project 1 -->
-        <div href="" class="card">
-          <div class="project-info">
-            <div class="project-bio">
-              <h3>Project One</h3>
-              <p>React, Redux, SASS</p>
-            </div>
+									</p>
+								</div>
+									<div class="first">
+									<li> <a href="https://hal.science/hal-03847301"><strong>Auto-encoder Based Medicare Fraud Detection.</strong></a></li>
+									<p>
+	
+										Zoubeirou a Mayaki, M., & Riveill, M. (2022, October). Auto-encoder Based Medicare Fraud Detection. ASPAI 2022 - 4th International Conference on Advances in Signal Processing and Artificial Intelligence. https://hal.science/hal-03847301
+										<br />
+										|<a href="https://hal.science/hal-03847301"><strong><textcolor>Hal version</textcolor></strong> </a>|
 
-            <div class="project-link">
-              <a href="#" target="_blank"><i class="fab fa-github"></i></a>
-              <a href="#" target="_blank"><i class="fas fa-globe"></i></a>
-            </div>
-          </div>
-        </div>
+									</p>
+								</div>
+								  </ul>
 
-        <!-- Project 2 -->
-        <div href="" class="card">
-          <div class="project-info">
-            <div class="project-bio">
-              <h3>Project Two</h3>
-              <p>React, Redux, SASS</p>
-            </div>
+							 </section>								
+						  </section>
+				<!-- Conferences -->
 
-            <div class="project-link">
-              <a href="#" target="_blank"><i class="fab fa-github"></i></a>
-              <a href="#" target="_blank"><i class="fas fa-globe"></i></a>
-            </div>
-          </div>
-        </div>
+							</section>
+							<section id="Conferences" class="project-container container" >
+						</p>
+						<h2>Conferences </h2>
+						<p>
+							<ul>
+								<div class="first">
+								<li><a ><strong>2022 International Joint Conference on Neural Networks (IJCNN)</strong> </a></li>
+								<p >
+									Padua, Italy, July 18-23, 2022.
+								</p>
+								</div>
+								<div class="first">
+									<li><a ><strong>2022 International Joint Conference on Neural Networks (IJCNN)</strong> </a></li>
+									<p >
+										June 18 - June 23, 2023, Gold Coast Convention and Exhibition Centre Queensland, Australia.
+									</p>
+									</div>
+									<div class="first">
+										<li><a ><strong>International Conference on Advances in Signal Processing and Artificial Intelligence</strong> </a></li>
+										<p >
+											Corfu, Greece, October 19-21, 2022.
+										</p>
+										</div>									
+									<div class="first">
+										<li><a ><strong>The 2022 International Conference on Machine Learning, Control, and Robotics (MLCR 2022)</strong> </a></li>
+										<p >
+											 Nanjing, China,21-23 October 2022.
+										</p>
+										</div>
+										<div class="first">
+											<li><a ><strong>The 2022 International Conference on Machine Learning, Control, and Robotics (MLCR 2022)</strong> </a></li>
+											<p >
+												 Nanjing, China,21-23 October 2022.
+											</p>
+											</div>
+											<div class="first">
+												<li><a ><strong>Sophia IA Summit 2021</strong> </a></li>
+												<p >
+													Université Côte d'Azur and 3IA institut.
+												</p>
+												</div>
+				
+							</ul>
+						</section>
+						<!-- Posts -->
+						<!--
+							<section class="posts">
+								<article>
+									<header>
+										<span class="date">April 24, 2017</span>
+										<h2><a href="#">Sed magna<br />
+										ipsum faucibus</a></h2>
+									</header>
+									<a href="#" class="image fit"><img src="images/pic02.jpg" alt="" /></a>
+									<p>Donec eget ex magna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis magna etiam.</p>
+									<ul class="actions special">
+										<li><a href="#" class="button">Full Story</a></li>
+									</ul>
+								</article>
+								<article>
+									<header>
+										<span class="date">April 22, 2017</span>
+										<h2><a href="#">Primis eget<br />
+										imperdiet lorem</a></h2>
+									</header>
+									<a href="#" class="image fit"><img src="images/pic03.jpg" alt="" /></a>
+									<p>Donec eget ex magna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis magna etiam.</p>
+									<ul class="actions special">
+										<li><a href="#" class="button">Full Story</a></li>
+									</ul>
+							</section>
+							-->
+						<!-- Footer -->
+							<footer>
+								<div class="pagination">
+									<!--<a href="#" class="previous">Prev</a>-->
+									<a href="#" class="page active">1</a>
+								</div>
+							</footer>
 
-        <!-- Porject 3 -->
-        <div href="" class="card">
-          <div class="project-info">
-            <div class="project-bio">
-              <h3>Project Three</h3>
-              <p>React, Redux, SASS</p>
-            </div>
+					</div>
 
-            <div class="project-link">
-              <a href="#" target="_blank"><i class="fab fa-github"></i></a>
-              <a href="#" target="_blank"><i class="fas fa-globe"></i></a>
-            </div>
-          </div>
-        </div>
+				<!-- Footer -->
+					<footer id="footer">
+						<section>
+							<form id="fcf-form-id" method="post" action="contact-form-process.php">
+								<div class="fields">
+									<div class="field">
+										<label for="Name">Name</label>
+										<input type="text" name="Name" id="Name" />
+									</div>
+									<div class="field">
+										<label for="Email">Email</label>
+										<input type="text" name="Email" id="Email" />
+									</div>
+									<div class="field">
+										<label for="Message">Message</label>
+										<textarea name="Message" id="Message" rows="3"></textarea>
+									</div>
+								</div>
+								<ul class="actions">
+									<li><input type="submit" value="Send Message" /></li>
+								</ul>
+							</form>
+						</section>
 
-        <!-- Project 4 -->
-        <div href="" class="card">
-          <div class="project-info">
-            <div class="project-bio">
-              <h3>Project Four</h3>
-              <p>React, Redux, SASS</p>
-            </div>
+						<section class="split contact">
+							<section class="alt">
+								<h3>Address</h3>
+								<p>2004 Rte des Lucioles, 06902 Valbonne<br />
+								France</p>
+							</section>
+							<section>
+								<h3>Phone</h3>
+								<p><a href="#">(000) 000-0000</a></p>
+							</section>
+							<section>
+								<h3>Email</h3>
+								<p><a href="#">info@untitled.tld</a></p>
+							</section>
+							<section>
+								<h3>Social</h3>
+								<ul class="icons alt">
+									<li><a href="www.linkedin.com/in/mansour-mayaki" class="icon brands alt fa-linkedin"><span class="linkedin">Linkedin</span></a></li>
+								
+								</ul>
+							</section>
+						</section>
+					</footer>
 
-            <div class="project-link">
-              <a href="#" target="_blank"><i class="fab fa-github"></i></a>
-              <a href="#" target="_blank"><i class="fas fa-globe"></i></a>
-            </div>
-          </div>
-        </div>
+				<!-- Copyright -->
+					<div id="copyright">
+						<ul><li>&copy; Untitled</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
+					</div>
 
-        <!-- Project 5 -->
-        <div href="" class="card">
-          <div class="project-info">
-            <div class="project-bio">
-              <h3>Project Five</h3>
-              <p>React, Redux, SASS</p>
-            </div>
+			</div>
 
-            <div class="project-link">
-              <a href="#" target="_blank"><i class="fab fa-github"></i></a>
-              <a href="#" target="_blank"><i class="fas fa-globe"></i></a>
-            </div>
-          </div>
-        </div>
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
 
-        <!-- Project 6 -->
-        <div href="" class="card">
-          <div class="project-info">
-            <div class="project-bio">
-              <h3>Project Six</h3>
-              <p>React, Redux, SASS</p>
-            </div>
-
-            <div class="project-link">
-              <a href="#" target="_blank"><i class="fab fa-github"></i></a>
-              <a href="#" target="_blank"><i class="fas fa-globe"></i></a>
-            </div>
-          </div>
-        </div>
-      </article>
-
-      <a href="#" class="btn btn-secondary"
-        target="_blank" >See More <i class="fas fa-arrow-right"></i
-      ></a>
-    </section>
-
-    <footer id="footer">
-      <div class="container">
-        <a href="mailto:communitypro47@gmail.com">communitypro47@gmail.com</a>
-        <!-- Social links -->
-        <div class="social">
-          <a href="#" target="_blank"
-            ><img src="./assets/facebook-icon.svg" alt="Facebook"
-          /></a>
-          <a href="#" target="_blank"><img src="./assets/twitter-icon.svg" alt="Twitter" /></a>
-          <a href="#" target="_blank"
-            ><img src="./assets/linkedin-icon.svg" alt="Linkedin"
-          /></a>
-          <a href="#" target="_blank"><img src="./assets/github-icon.svg" alt="GitHub" /></a>
-          <a href="#" target="_blank"
-            ><img src="./assets/hashnode-icon.svg" alt="Hashnode"
-          /></a>
-        </div>
-        <!-- Attribution -->
-        <div class="attribution">
-          <a
-            href="https://github.com/MansMayaki/MansMayaki.github.io"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <img
-              src="https://user-images.githubusercontent.com/62628408/157202263-9174da24-b19a-4017-9b7c-a1d26ae8f014.svg"
-              alt="attribution"
-              width="150px"
-            />
-          </a>
-        </div>
-        <p>Copyright &copy; Communitypro <span id="datee"></span>, All rights reserved</p>
-      </div>
-    </footer>
-    <script src="js/script.js"></script>
-  </body>
+	</body>
 </html>

@@ -1,0 +1,105 @@
+
+@INPROCEEDINGS{9892066,
+  author={Mayaki, Mansour Zoubeirou A and Riveill, Michel},
+  booktitle={2022 International Joint Conference on Neural Networks (IJCNN)}, 
+  title={Autoregressive based Drift Detection Method}, 
+  year={2022},
+  volume={},
+  number={},
+  pages={1-8},
+  doi={10.1109/IJCNN55064.2022.9892066}}
+
+
+@INPROCEEDINGS{10037065,
+  author={Mayaki, Mansour Zoubeirou A and Riveill, Michel},
+  booktitle={2022 International Conference on Machine Learning, Control, and Robotics (MLCR)}, 
+  title={Multiple Inputs Neural Networks for Fraud Detection}, 
+  year={2022},
+  volume={},
+  number={},
+  pages={8-13},
+  doi={10.1109/MLCR57210.2022.00011}}
+
+@online{CMSGov2018,
+  title={Centers For Medicare & Medicaid Services. Medicare fee-for-service provider utilization & payment data physician and other supplier public use file: a methodological overview.},
+  url  ={https://www.cms.gov/research-statistics-data-and-systems/statistics-trends-and-reports/medicare-provider-charge-data/physician-and-other-supplier},
+  addendum = "(accessed: 01.07.2021)",
+  year={2018},
+  organization={Centers For Medicare & Medicaid Services}
+}
+
+@inproceedings{03847301,
+  TITLE = {{Auto-encoder Based Medicare Fraud Detection}},
+  AUTHOR = {Zoubeirou a Mayaki, Mansour and Riveill, Michel},
+  URL = {https://hal.science/hal-03847301},
+  BOOKTITLE = {{ASPAI 2022 - 4th International Conference on Advances in Signal Processing and Artificial Intelligence}},
+  ADDRESS = {Corfou, Greece},
+  YEAR = {2022},
+  MONTH = Oct,
+  KEYWORDS = {Medicare fraud ; Anomaly detection ; Deep learning ; Auto encoder ; Machine learning},
+  PDF = {https://hal.science/hal-03847301/file/AE-MFD.pdf},
+  HAL_ID = {hal-03847301},
+  HAL_VERSION = {v1},
+}
+@article{mayaki2023anorand,
+  title={AnoRand: A Semi Supervised Deep Learning Anomaly Detection Method by Random Labeling},
+  author={Mayaki, Mansour Zoubeirou A and Riveill, Michel},
+  journal={arXiv preprint arXiv:2305.18389},
+  year={2023}
+}
+
+@unpublished{03967924,
+  TITLE = {{Machinery Anomaly Detection using artificial neural networks and signature feature extraction}},
+  AUTHOR = {Zoubeirou a Mayaki, Mansour and Riveill, Michel},
+  URL = {https://hal.science/hal-03967924},
+  NOTE = {working paper or preprint},
+  YEAR = {2023},
+  MONTH = Feb,
+  KEYWORDS = {Fault diagnosis ; Anomaly detection ; Predictive maintenance ; Concept drift detection ; Data streams ; Signature ; Machine learning},
+  PDF = {https://hal.science/hal-03967924/file/PredictiveMaintenance_Hal.pdf},
+  HAL_ID = {hal-03967924},
+  HAL_VERSION = {v1},
+}
+
+@inproceedings{03607722,
+  TITLE = {{Multiple Inputs Neural Networks for Fraud Detection}},
+  AUTHOR = {Mayaki, Mansour Zoubeirou A and Riveill, Michel},
+  URL = {https://hal.science/hal-03607722},
+  BOOKTITLE = {{The 2022 International Conference on Machine Learning, Control, and Robotics (MLCR 2022)}},
+  ADDRESS = {Suzhou, China},
+  ORGANIZATION = {{Min Huang, Northeastern University, China and Lipo Wang, Nanyang Technological University, Singapore}},
+  PUBLISHER = {{IEEE}},
+  PAGES = {8-13},
+  YEAR = {2022},
+  MONTH = Oct,
+  DOI = {10.1109/MLCR57210.2022.00011},
+  KEYWORDS = {Medicare fraud detection ; Anomaly detection ; Imbalanced data ; Machine learning ; Deep neural networks},
+  PDF = {https://hal.science/hal-03607722v2/file/FraudDetection_MLCR2022CamReady%20%286%29.pdf},
+  HAL_ID = {hal-03607722},
+  HAL_VERSION = {v2},
+}
+
+@inproceedings{03847301,
+  TITLE = {{Auto-encoder Based Medicare Fraud Detection}},
+  AUTHOR = {Zoubeirou a Mayaki, Mansour and Riveill, Michel},
+  URL = {https://hal.science/hal-03847301},
+  BOOKTITLE = {{ASPAI 2022 - 4th International Conference on Advances in Signal Processing and Artificial Intelligence}},
+  ADDRESS = {Corfou, Greece},
+  YEAR = {2022},
+  MONTH = Oct,
+  KEYWORDS = {Medicare fraud ; Anomaly detection ; Deep learning ; Auto encoder ; Machine learning},
+  PDF = {https://hal.science/hal-03847301/file/AE-MFD.pdf},
+  HAL_ID = {hal-03847301},
+  HAL_VERSION = {v1},
+}
+
+@unpublished{04116457,
+  TITLE = {{AnoRand: A Semi Supervised Deep Learning Anomaly Detection Method by Random Labeling}},
+  AUTHOR = {Mayaki, Mansour Zoubeirou A and Riveill, Michel},
+  URL = {https://hal.science/hal-04116457},
+  NOTE = {working paper or preprint},
+  YEAR = {2023},
+  MONTH = Jun,
+  HAL_ID = {hal-04116457},
+  HAL_VERSION = {v1},
+}
