@@ -4,87 +4,632 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Manifolds in Machine Learning — Mansour Mayaki</title>
-  <meta name="description" content="Research note by Mansour Mayaki: Manifolds in Machine Learning." />
+  <meta name="description" content="A gentle research note introducing manifolds in machine learning, intrinsic dimension, representation learning, generative models, Transformers, and Mixture-of-Experts models." />
+
   <style>
-    :root{
-      --bg:#ffffff; --fg:#111827; --muted:#4b5563; --soft:#e5e7eb;
-      --soft2:#f3f4f6; --link:#0f766e; --link2:#115e59; --max:850px;
+    :root {
+      --bg: #ffffff;
+      --fg: #111827;
+      --muted: #4b5563;
+      --soft: #e5e7eb;
+      --soft2: #f3f4f6;
+      --soft3: #f9fafb;
+      --link: #0f766e;
+      --link2: #115e59;
+      --accent: #0f766e;
+      --max: 1120px;
+      --radius: 14px;
     }
-    *{box-sizing:border-box}
-    body{
-      margin:0; font-family:ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
-      color:var(--fg); background:var(--bg); line-height:1.7;
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      color: var(--fg);
+      background: var(--bg);
+      line-height: 1.65;
     }
-    .wrap{max-width:var(--max); margin:0 auto; padding:34px 18px 70px}
-    a{color:var(--link); text-decoration:none} a:hover{color:var(--link2); text-decoration:underline}
-    header{border-bottom:1px solid var(--soft); padding-bottom:22px; margin-bottom:26px}
-    h1{font-size:2rem; line-height:1.2; margin:12px 0 8px}
-    h2{font-size:1.25rem; margin:28px 0 10px}
-    h3{font-size:1.05rem; margin:22px 0 8px}
-    p{margin:0 0 14px}
-    ul{margin:8px 0 18px 22px; padding:0}
-    li{margin:7px 0}
-    .meta{color:var(--muted); font-size:.95rem}
-    .back{display:inline-block; margin-bottom:12px}
-    .box{border-left:4px solid var(--link); background:var(--soft2); padding:13px 16px; margin:22px 0; border-radius:0 10px 10px 0}
-    code{background:var(--soft2); padding:2px 5px; border-radius:5px}
-    footer{border-top:1px solid var(--soft); margin-top:36px; padding-top:18px; color:var(--muted); font-size:.92rem}
+
+    a { color: var(--link); text-decoration: none; }
+    a:hover { color: var(--link2); text-decoration: underline; }
+
+    .page {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 28px 18px 70px;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 18px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .topbar a { font-weight: 600; }
+
+    .note-header {
+      border: 1px solid var(--soft);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, var(--soft2), #fff);
+      padding: 28px;
+      margin-bottom: 20px;
+    }
+
+    .note-label {
+      display: inline-block;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1.1;
+      letter-spacing: -0.04em;
+      margin: 0 0 10px;
+    }
+
+    .subtitle {
+      max-width: 760px;
+      color: var(--muted);
+      font-size: 1.08rem;
+      margin: 0;
+    }
+
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 18px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      border: 1px solid var(--soft);
+      border-radius: 999px;
+      background: #fff;
+      color: var(--muted);
+      font-size: 0.88rem;
+      padding: 6px 10px;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 270px minmax(0, 1fr);
+      gap: 20px;
+      align-items: start;
+    }
+
+    .toc {
+      position: sticky;
+      top: 18px;
+      border: 1px solid var(--soft);
+      border-radius: var(--radius);
+      background: #fff;
+      padding: 16px;
+      max-height: calc(100vh - 36px);
+      overflow: auto;
+    }
+
+    .toc h2 {
+      margin: 0 0 10px;
+      font-size: 1rem;
+      letter-spacing: -0.01em;
+    }
+
+    .toc ol {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .toc li { margin: 7px 0; }
+
+    .toc a {
+      display: block;
+      color: var(--muted);
+      font-size: 0.92rem;
+      line-height: 1.35;
+    }
+
+    .toc a:hover { color: var(--link2); }
+
+    article {
+      border: 1px solid var(--soft);
+      border-radius: var(--radius);
+      background: #fff;
+      padding: 26px;
+      min-width: 0;
+    }
+
+    article h2 {
+      font-size: 1.45rem;
+      line-height: 1.25;
+      margin: 2.1rem 0 0.65rem;
+      padding-top: 0.2rem;
+      letter-spacing: -0.02em;
+    }
+
+    article section:first-of-type h2 { margin-top: 1.2rem; }
+
+    article h3 {
+      font-size: 1.1rem;
+      margin: 1.35rem 0 0.4rem;
+      letter-spacing: -0.01em;
+    }
+
+    article p { margin: 0.75rem 0; }
+
+    article ul {
+      margin: 0.7rem 0 1rem 1.2rem;
+      padding: 0;
+    }
+
+    article li { margin: 0.35rem 0; }
+
+    .tcolorbox {
+      border-left: 4px solid var(--accent);
+      border-radius: 12px;
+      background: var(--soft3);
+      padding: 14px 16px;
+      margin: 18px 0;
+    }
+
+    .tcolorbox p { margin: 0; }
+
+    .math {
+      overflow-x: auto;
+      overflow-y: hidden;
+    }
+
+    .math.display {
+      display: block;
+      margin: 1rem 0;
+      padding: 0.15rem 0;
+    }
+
+    code {
+      background: var(--soft2);
+      padding: 2px 5px;
+      border-radius: 5px;
+    }
+
+    footer {
+      margin-top: 22px;
+      color: var(--muted);
+      font-size: 0.9rem;
+      text-align: center;
+    }
+
+    @media (max-width: 860px) {
+      .layout { grid-template-columns: 1fr; }
+      .toc { position: static; max-height: none; }
+      article { padding: 20px; }
+      .note-header { padding: 22px; }
+      .topbar { align-items: flex-start; flex-direction: column; }
+    }
   </style>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\(', '\)'], ['$', '$']],
+        displayMath: [['\[', '\]'], ['$$', '$$']],
+        processEscapes: true
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
 </head>
+
 <body>
-  <div class="wrap">
-    <header>
-      <a class="back" href="../index.html">← Back to homepage</a>
-      <h1>Manifolds in Machine Learning</h1>
-      <div class="meta">Mini-course notes · Machine Learning · Geometry · Work in progress</div>
-    </header>
-
-    <p>
-      These notes introduce the idea of manifolds and explain why they are useful in machine learning,
-      especially for representation learning, dimensionality reduction, geometric deep learning,
-      and anomaly detection.
-    </p>
-
-    <h2>1. Motivation</h2>
-    <p>
-      Modern machine learning often deals with high-dimensional data: images, signals, biological measurements,
-      industrial sensor streams, and many other types of observations. However, the meaningful degrees of freedom
-      may be much smaller than the ambient dimension.
-    </p>
-
-    <div class="box">
-      <strong>Main idea:</strong> data can be high-dimensional in its raw representation while having a lower-dimensional
-      intrinsic structure. Learning this structure is often more useful than treating observations as arbitrary points.
+  <div class="page">
+    <div class="topbar">
+      <a href="../index.html">← Back to homepage</a>
+      <span>Mansour Mayaki · Research Notes</span>
     </div>
 
-    <h2>2. What is a manifold?</h2>
-    <p>
-      Informally, a manifold is a space that may be globally curved or complex, but that locally looks like a Euclidean space.
-      A simple example is the surface of the Earth: locally it looks flat and two-dimensional, although it is embedded in
-      three-dimensional space.
-    </p>
+    <header class="note-header">
+      <span class="note-label">Mini-course · Machine Learning · Geometry</span>
+      <h1>Manifolds in Machine Learning</h1>
+      <p class="subtitle">
+        A gentle introduction to manifolds, intrinsic dimension, representation learning,
+        generative models, Transformers, and Mixture-of-Experts models.
+      </p>
+      <div class="meta-row" aria-label="keywords">
+        <span class="pill">Manifolds</span>
+        <span class="pill">Intrinsic dimension</span>
+        <span class="pill">Representation learning</span>
+        <span class="pill">Transformers</span>
+        <span class="pill">Mixture-of-Experts</span>
+      </div>
+    </header>
 
-    <h2>3. The manifold hypothesis</h2>
-    <p>
-      The manifold hypothesis states that many real-world datasets concentrate near lower-dimensional structures.
-      This idea motivates dimensionality reduction, representation learning, autoencoders, and several geometric approaches
-      to machine learning.
-    </p>
+    <div class="layout">
+      <aside class="toc" aria-label="Table of contents">
+        <h2>Contents</h2>
+        <ol>
+          <li><a href="#basic-intuition">Basic Intuition</a></li>
+<li><a href="#ambient-dimension-and-intrinsic-dimension">Ambient Dimension and Intrinsic Dimension</a></li>
+<li><a href="#why-manifolds-matter-in-machine-learning">Why Manifolds Matter in Machine Learning</a></li>
+<li><a href="#example-face-images">Example: Face Images</a></li>
+<li><a href="#local-coordinates-and-charts">Local Coordinates and Charts</a></li>
+<li><a href="#what-does-c1-mean">What Does \(C^1\) Mean?</a></li>
+<li><a href="#manifold-smoothness-and-function-smoothness">Manifold Smoothness and Function Smoothness</a></li>
+<li><a href="#why-approximation-rates-depend-on-d-rather-than-d">Why Approximation Rates Depend on \(d\) Rather Than \(D\)</a></li>
+<li><a href="#manifolds-and-neural-networks">Manifolds and Neural Networks</a></li>
+<li><a href="#manifolds-and-representation-learning">Manifolds and Representation Learning</a></li>
+<li><a href="#manifolds-and-generative-models">Manifolds and Generative Models</a></li>
+<li><a href="#manifolds-and-transformers">Manifolds and Transformers</a></li>
+<li><a href="#manifolds-and-mixture-of-experts-models">Manifolds and Mixture-of-Experts Models</a></li>
+<li><a href="#partition-of-unity-a-geometric-bridge">Partition of Unity: A Geometric Bridge</a></li>
+<li><a href="#a-mental-picture">A Mental Picture</a></li>
+<li><a href="#common-confusions">Common Confusions</a></li>
+<li><a href="#takeaway-for-moe-transformer-theory">Takeaway for MoE Transformer Theory</a></li>
+        </ol>
+      </aside>
 
-    <h2>4. Links with anomaly detection</h2>
-    <p>
-      In anomaly detection, normal observations may lie close to a learned manifold or low-dimensional structure.
-      Observations that deviate from this structure can be interpreted as potential anomalies, depending on the application
-      and the scoring rule.
-    </p>
+      <article>
+        <div class="tcolorbox">
+<p><strong>Core idea.</strong> A manifold is a space that may be curved
+or complicated at a global scale, while looking like ordinary Euclidean
+space at a local scale. In machine learning, manifolds provide a useful
+way to describe the idea that high-dimensional data often have a much
+lower-dimensional structure.</p>
+</div>
+<section class="level1" id="basic-intuition">
+<h2>Basic Intuition</h2>
+<p>A <strong>manifold</strong> is a space that looks locally like
+ordinary Euclidean space. The essential slogan is <span class="math display">\[\boxed{\text{A manifold is locally
+Euclidean.}}\]</span> This means that, near each point, the manifold
+behaves like <span class="math inline">\(\mathbb{R}^d\)</span> for some
+dimension <span class="math inline">\(d\)</span>.</p>
+<p>Simple examples include:</p>
+<ul>
+<li><p>a line, which is a one-dimensional manifold;</p></li>
+<li><p>a circle <span class="math inline">\(\mathbb{S}^1 \subset
+\mathbb{R}^2\)</span>, which is also one-dimensional;</p></li>
+<li><p>the surface of a sphere <span class="math inline">\(\mathbb{S}^2
+\subset \mathbb{R}^3\)</span>, which is two-dimensional.</p></li>
+</ul>
+<p>A circle is curved as a whole, but a sufficiently small arc looks
+like a line. Similarly, the surface of the Earth is curved globally, but
+a small region looks approximately flat. This is the central intuition:
+manifolds may be globally curved, but locally they admit flat
+coordinates.</p>
+</section>
+<section class="level1" id="ambient-dimension-and-intrinsic-dimension">
+<h2>Ambient Dimension and Intrinsic Dimension</h2>
+<p>A manifold can be embedded in a larger Euclidean space. This is often
+written as <span class="math display">\[\mathcal{M}\subset
+\mathbb{R}^D.\]</span> In this notation:</p>
+<ul>
+<li><p><span class="math inline">\(D\)</span> is the <strong>ambient
+dimension</strong>;</p></li>
+<li><p><span class="math inline">\(d\)</span> is the <strong>intrinsic
+dimension</strong> of the manifold <span class="math inline">\(\mathcal{M}\)</span>.</p></li>
+</ul>
+<p>For example, the circle satisfies <span class="math display">\[\mathbb{S}^1 \subset \mathbb{R}^2.\]</span> Its
+ambient dimension is <span class="math inline">\(D=2\)</span>, because
+it is represented in the plane. Its intrinsic dimension is <span class="math inline">\(d=1\)</span>, because one coordinate, the angle
+<span class="math inline">\(\theta\)</span>, is enough to describe a
+point on the circle: <span class="math display">\[(x,y) =
+(\cos\theta,\sin\theta).\]</span></p>
+<p>For the surface of a sphere, <span class="math display">\[\mathbb{S}^2 \subset \mathbb{R}^3,\]</span> the
+ambient dimension is <span class="math inline">\(D=3\)</span>, while the
+intrinsic dimension is <span class="math inline">\(d=2\)</span>. A point
+on the sphere can be described by two coordinates, such as latitude and
+longitude.</p>
+<div class="tcolorbox">
+<p><strong>Key distinction.</strong> The ambient dimension is the
+dimension of the space in which the data are represented. The intrinsic
+dimension is the number of local degrees of freedom of the data
+themselves.</p>
+</div>
+</section>
+<section class="level1" id="why-manifolds-matter-in-machine-learning">
+<h2>Why Manifolds Matter in Machine Learning</h2>
+<p>Machine learning data are often represented in very high-dimensional
+spaces. A <span class="math inline">\(100\times 100\)</span> grayscale
+image, for instance, can be viewed as a vector in <span class="math display">\[\mathbb{R}^{10000}.\]</span> A hidden
+representation in a Transformer may live in <span class="math display">\[\mathbb{R}^{768}, \qquad \mathbb{R}^{4096},
+\qquad \text{or even higher-dimensional spaces.}\]</span></p>
+<p>However, meaningful data typically do not fill the entire ambient
+space. Most random vectors in <span class="math inline">\(\mathbb{R}^{10000}\)</span> do not look like
+natural images. Most random vectors in a high-dimensional hidden
+representation space do not correspond to meaningful language
+representations.</p>
+<p>This motivates the <strong>manifold hypothesis</strong>: <span class="math display">\[\boxed{\text{High-dimensional data often
+concentrate near a low-dimensional manifold.}}\]</span> In other words,
+data may be stored in a large vector space, while the meaningful
+variations may be governed by far fewer degrees of freedom.</p>
+</section>
+<section class="level1" id="example-face-images">
+<h2>Example: Face Images</h2>
+<p>Consider <span class="math inline">\(64\times64\)</span> grayscale
+face images. Each image has <span class="math display">\[64\cdot64 =
+4096\]</span> pixels, so each image can be represented as a point in
+<span class="math inline">\(\mathbb{R}^{4096}\)</span>.</p>
+<p>Realistic face images are not arbitrary vectors in this space. They
+vary according to structured factors such as identity, pose, lighting,
+facial expression, camera angle, and background. These factors may be
+numerous, but they are not <span class="math inline">\(4096\)</span>
+independent degrees of freedom.</p>
+<p>For this reason, the set of realistic face images can often be
+modeled as a lower-dimensional structure: <span class="math display">\[\mathcal{M}_{\mathrm{faces}} \subset
+\mathbb{R}^{4096}.\]</span> The ambient dimension is <span class="math inline">\(4096\)</span>, while the intrinsic dimension is
+expected to be much smaller.</p>
+<p>This perspective helps explain the importance of representation
+learning, autoencoders, variational autoencoders, diffusion models, and
+manifold-learning methods. These approaches aim to uncover, exploit, or
+sample from hidden low-dimensional structure in high-dimensional
+data.</p>
+</section>
+<section class="level1" id="local-coordinates-and-charts">
+<h2>Local Coordinates and Charts</h2>
+<p>The main reason manifolds are mathematically manageable is that each
+small neighborhood can be described using ordinary coordinates.</p>
+<p>Strictly speaking, a <strong>chart</strong> maps a local region of a
+manifold into <span class="math inline">\(\mathbb{R}^d\)</span>. Its
+inverse can be viewed as a local parameterization: <span class="math display">\[\varphi : U \subset \mathbb{R}^d \longrightarrow
+\mathcal{M}.\]</span> This means that a small patch of the manifold can
+be described using <span class="math inline">\(d\)</span> real
+coordinates.</p>
+<p>For the circle, a local parameterization is <span class="math display">\[\varphi(\theta) =
+(\cos\theta,\sin\theta).\]</span> For the sphere, a common
+parameterization is <span class="math display">\[\varphi(\theta,\phi)
+= (\sin\theta\cos\phi,\, \sin\theta\sin\phi,\, \cos\theta).\]</span></p>
+<p>The important point is that a manifold may be curved in <span class="math inline">\(\mathbb{R}^D\)</span>, but small neighborhoods can
+still be studied using coordinates in <span class="math inline">\(\mathbb{R}^d\)</span>.</p>
+</section>
+<section class="level1" id="what-does-c1-mean">
+<h2>What Does <span class="math inline">\(C^1\)</span> Mean?</h2>
+<p>A <span class="math inline">\(C^1\)</span> manifold is a manifold
+whose coordinate maps are continuously differentiable. Informally, it
+has no sharp corners or sudden breaks. A <span class="math inline">\(C^1\)</span> manifold has a well-defined tangent
+space at every point.</p>
+<p>At each point <span class="math inline">\(x\in\mathcal{M}\)</span>,
+the tangent space is denoted by <span class="math display">\[T_x\mathcal{M}.\]</span> For a circle, the
+tangent space at a point is the tangent line. For a sphere, the tangent
+space at a point is the tangent plane.</p>
+<p>This notion is important in machine learning because many local tools
+rely on smooth local geometry: gradients, Jacobians, local PCA,
+nearest-neighbor dimension estimation, and local linear
+approximations.</p>
+</section>
+<section class="level1" id="manifold-smoothness-and-function-smoothness">
+<h2>Manifold Smoothness and Function Smoothness</h2>
+<p>In learning theory, it is useful to distinguish between two objects:
+<span class="math display">\[\underbrace{\mathcal{M}}_{\text{where the
+data live}}
+\qquad\text{and}\qquad
+\underbrace{f:\mathcal{M}\to\mathbb{R}}_{\text{the target function to
+learn}}.\]</span> These two objects have different notions of
+smoothness.</p>
+<section class="level2 unnumbered" id="manifold-smoothness">
+<h3 class="unnumbered">Manifold smoothness</h3>
+<p>When <span class="math display">\[\mathcal{M}\subset \mathbb{R}^D
+\quad \text{is a } C^1 \text{ submanifold},\]</span> the statement
+describes the geometry of the input space. The data manifold is assumed
+to be smooth enough to have local coordinates and tangent spaces.</p>
+</section>
+<section class="level2 unnumbered" id="function-smoothness">
+<h3 class="unnumbered">Function smoothness</h3>
+<p>When <span class="math display">\[f \in
+C^\beta(\mathcal{M}),\]</span> the statement describes how smoothly the
+target function varies along the manifold. The parameter <span class="math inline">\(\beta&gt;0\)</span> measures the smoothness of the
+function. Larger values of <span class="math inline">\(\beta\)</span>
+correspond to smoother functions, which are usually easier to
+approximate.</p>
+<p>For example, the sphere <span class="math inline">\(\mathbb{S}^2\)</span> is a smooth manifold. A
+function defined on the sphere may still be either smooth or rough. The
+function <span class="math display">\[f(x,y,z)=z\]</span> is smooth on
+the sphere. By contrast, the function <span class="math display">\[f(x,y,z)=\mathbf{1}\{z&gt;0\}\]</span> has a jump
+at the equator and is not smooth.</p>
+<div class="tcolorbox">
+<p><strong>Summary.</strong> Manifold smoothness describes the shape of
+the data domain. Function smoothness describes how the target varies on
+that domain.</p>
+</div>
+</section>
+</section>
+<section class="level1" id="why-approximation-rates-depend-on-d-rather-than-d">
+<h2>Why Approximation Rates Depend on <span class="math inline">\(d\)</span> Rather Than <span class="math inline">\(D\)</span></h2>
+<p>Suppose that the data lie on a <span class="math inline">\(d\)</span>-dimensional manifold <span class="math display">\[\mathcal{M}\subset \mathbb{R}^D,\]</span> and
+that the target function satisfies <span class="math display">\[f\in
+C^\beta(\mathcal{M}).\]</span> In many approximation-theoretic settings,
+the difficulty of approximating <span class="math inline">\(f\)</span>
+is governed by the intrinsic dimension <span class="math inline">\(d\)</span>, not by the ambient dimension <span class="math inline">\(D\)</span>.</p>
+<p>Typical approximation rates may take the form <span class="math display">\[N^{-\beta/d},\]</span> or, for squared error,
+<span class="math display">\[N^{-2\beta/d}.\]</span> Here <span class="math inline">\(N\)</span> denotes a measure of model capacity. In
+sparse Mixture-of-Experts settings, this quantity may correspond to the
+active parameter budget <span class="math inline">\(N_{\mathrm{act}}\)</span>, leading to rates such
+as <span class="math display">\[N_{\mathrm{act}}^{-2\beta/d}.\]</span></p>
+<p>This distinction is important because <span class="math inline">\(D\)</span> can be extremely large, while <span class="math inline">\(d\)</span> may be much smaller.</p>
+<div class="tcolorbox">
+<p><strong>Main theoretical payoff.</strong> When the data have low
+intrinsic dimension, approximation rates can depend on <span class="math inline">\(d\)</span> rather than on the much larger ambient
+dimension <span class="math inline">\(D\)</span>.</p>
+</div>
+</section>
+<section class="level1" id="manifolds-and-neural-networks">
+<h2>Manifolds and Neural Networks</h2>
+<p>Neural networks are universal approximators, but approximation in
+high dimension can be difficult. If a function is defined on all of
+<span class="math inline">\(\mathbb{R}^D\)</span>, approximation rates
+may suffer from the curse of dimensionality: <span class="math display">\[N^{-\beta/D}.\]</span> If the function only needs
+to be learned on a manifold <span class="math inline">\(\mathcal{M}\)</span> of dimension <span class="math inline">\(d\)</span>, the relevant rate may become <span class="math display">\[N^{-\beta/d}.\]</span> When <span class="math inline">\(d\ll D\)</span>, this can be a major
+improvement.</p>
+<p>This explains why manifold assumptions are common in machine-learning
+theory. They provide a mathematical reason why learning in
+high-dimensional representation spaces can still be possible.</p>
+</section>
+<section class="level1" id="manifolds-and-representation-learning">
+<h2>Manifolds and Representation Learning</h2>
+<p>A neural network maps an input through a sequence of representations:
+<span class="math display">\[x \longmapsto h_1(x) \longmapsto h_2(x)
+\longmapsto \cdots \longmapsto h_L(x).\]</span> Each layer transforms
+the geometry of the data. Ideally, these transformations make the
+representation simpler and more useful: classes become more separated,
+irrelevant variations are compressed, and meaningful factors become
+easier to extract.</p>
+<p>From this perspective, representation learning can be interpreted as
+the process of reshaping the data manifold into a geometry that is
+easier for the final model layers to use.</p>
+<p>This geometric view is related to the study of intrinsic dimension,
+hidden-state geometry, local PCA, clustering in embedding spaces, neural
+collapse, and manifold flattening.</p>
+</section>
+<section class="level1" id="manifolds-and-generative-models">
+<h2>Manifolds and Generative Models</h2>
+<p>Generative models are naturally connected to manifolds. A generator
+often starts from a latent vector <span class="math display">\[z\in\mathbb{R}^d\]</span> and maps it to a
+high-dimensional object <span class="math display">\[G(z)\in\mathbb{R}^D.\]</span> The image of the
+generator is a manifold-like set: <span class="math display">\[\mathcal{M}= \{G(z): z\in\mathbb{R}^d\} \subset
+\mathbb{R}^D.\]</span> Thus, a generator can be viewed as learning a
+parameterization of the data manifold.</p>
+<p>This viewpoint is useful for understanding autoencoders, variational
+autoencoders, generative adversarial networks, and diffusion models.
+These models aim to learn or sample from the structured region of
+high-dimensional space where realistic data are concentrated.</p>
+</section>
+<section class="level1" id="manifolds-and-transformers">
+<h2>Manifolds and Transformers</h2>
+<p>In Transformers, a token hidden state may live in a high-dimensional
+space: <span class="math display">\[h_t \in \mathbb{R}^D.\]</span>
+However, not every vector in <span class="math inline">\(\mathbb{R}^D\)</span> corresponds to a meaningful
+token representation. Hidden states produced by a trained Transformer
+often occupy a structured region, which can be modeled as <span class="math display">\[h_t \in \mathcal{M}\subset
+\mathbb{R}^D.\]</span></p>
+<p>A Transformer layer can then be viewed as learning a function on, or
+near, this manifold: <span class="math display">\[T:\mathcal{M}\to\mathbb{R}^D.\]</span> If the
+relevant function is smooth along <span class="math inline">\(\mathcal{M}\)</span>, then approximation and
+generalization behavior may depend on the intrinsic dimension <span class="math inline">\(d\)</span>, rather than only on the ambient
+dimension <span class="math inline">\(D\)</span>.</p>
+</section>
+<section class="level1" id="manifolds-and-mixture-of-experts-models">
+<h2>Manifolds and Mixture-of-Experts Models</h2>
+<p>Mixture-of-Experts models have a natural geometric interpretation.
+Suppose the data manifold <span class="math inline">\(\mathcal{M}\)</span> is complicated. Instead of
+using one dense feed-forward network everywhere, an MoE model can divide
+the manifold into regions and assign different experts to different
+regions.</p>
+<p>A simplified expression is <span class="math display">\[f(x) \approx
+\sum_{m=1}^M g_m(x)E_m(x),\]</span> where:</p>
+<ul>
+<li><p><span class="math inline">\(E_m\)</span> is expert <span class="math inline">\(m\)</span>;</p></li>
+<li><p><span class="math inline">\(g_m(x)\)</span> is the router weight
+for expert <span class="math inline">\(m\)</span>;</p></li>
+<li><p>only a small number of experts are active for each input <span class="math inline">\(x\)</span>.</p></li>
+</ul>
+<p>Sparse routing can be written as <span class="math display">\[\left|\{m: g_m(x)\neq 0\}\right| \le k.\]</span>
+The router selects the local experts that are most relevant for the
+current region of the manifold. In this sense, MoE models can be
+interpreted as collections of local approximators combined by a sparse
+routing mechanism.</p>
+</section>
+<section class="level1" id="partition-of-unity-a-geometric-bridge">
+<h2>Partition of Unity: A Geometric Bridge</h2>
+<p>A partition of unity is a classical tool from differential geometry.
+It makes it possible to build a global object by combining local
+objects.</p>
+<p>Suppose the manifold is covered by local patches: <span class="math display">\[\mathcal{M}\subseteq U_1\cup U_2\cup\cdots\cup
+U_M.\]</span> On each patch <span class="math inline">\(U_m\)</span>, an
+expert <span class="math inline">\(E_m\)</span> approximates the target
+function locally. Router weights <span class="math inline">\(g_m\)</span> combine these local approximations:
+<span class="math display">\[f(x) \approx \sum_{m=1}^M
+g_m(x)E_m(x).\]</span> The weights satisfy <span class="math display">\[g_m(x)\ge 0,
+\qquad
+\sum_{m=1}^M g_m(x)=1.\]</span> If the partition is sparse, only a few
+weights are nonzero at each point: <span class="math display">\[\left|\{m:g_m(x)\neq 0\}\right|\le k.\]</span>
+This closely resembles sparse MoE routing from a geometric point of
+view.</p>
+<div class="tcolorbox">
+<p><strong>MoE interpretation.</strong> Local charts describe local
+regions of the manifold. Experts approximate functions on those regions.
+Router weights combine local experts into a global model.</p>
+</div>
+</section>
+<section class="level1" id="a-mental-picture">
+<h2>A Mental Picture</h2>
+<p>The data manifold can be imagined as a curved road in a huge empty
+desert. The ambient space <span class="math inline">\(\mathbb{R}^D\)</span> is the whole desert, while
+the data live only on or near the road.</p>
+<p>A dense model uses one shared mechanism for the entire road. An MoE
+model places specialists along different parts of the road. The router
+decides which specialists should be used for each point.</p>
+<p>The theory suggests that, when the road is smooth and the target
+function changes smoothly along it, the number of active specialists
+helps control approximation quality. The routing mechanism also
+introduces additional statistical complexity, because the model must
+choose among many possible experts.</p>
+</section>
+<section class="level1" id="common-confusions">
+<h2>Common Confusions</h2>
+<section class="level2 unnumbered" id="is-every-dataset-a-manifold">
+<h3 class="unnumbered">Is every dataset a manifold?</h3>
+<p>Not exactly. A finite dataset is a finite point cloud. The manifold
+assumption states that the data are samples from, or lie near, an
+underlying continuous low-dimensional structure.</p>
+</section>
+<section class="level2 unnumbered" id="is-manifold-dimension-the-same-as-embedding-dimension">
+<h3 class="unnumbered">Is manifold dimension the same as embedding
+dimension?</h3>
+<p>No. A hidden state may lie in <span class="math inline">\(\mathbb{R}^{512}\)</span>, but the intrinsic
+dimension of the set of meaningful hidden states may be much
+smaller.</p>
+</section>
+<section class="level2 unnumbered" id="does-a-smooth-manifold-imply-a-smooth-target-function">
+<h3 class="unnumbered">Does a smooth manifold imply a smooth target
+function?</h3>
+<p>No. The domain can be smooth while the target function is rough. For
+example, the circle is smooth, but a step function on the circle is not
+smooth.</p>
+</section>
+</section>
+<section class="level1" id="takeaway-for-moe-transformer-theory">
+<h2>Takeaway for MoE Transformer Theory</h2>
+<p>In MoE Transformer theory, the manifold assumption can formalize the
+idea that token representations may have low-dimensional structure:
+<span class="math display">\[\mathcal{M}\subset \mathbb{R}^D, \qquad
+\dim(\mathcal{M})=d, \qquad d\ll D.\]</span> A common additional
+assumption is that the target function is smooth along this manifold:
+<span class="math display">\[f\in C^\beta(\mathcal{M}).\]</span> Under
+such assumptions, the approximation error may scale as <span class="math display">\[N_{\mathrm{act}}^{-2\beta/d}.\]</span> This
+connects geometry to scaling laws: <span class="math display">\[\text{data geometry}
+\quad\Longrightarrow\quad
+\text{approximation rate}
+\quad\Longrightarrow\quad
+\text{scaling exponent}.\]</span></p>
+<div class="tcolorbox">
+<p><strong>Final summary.</strong> Manifolds model the hidden
+low-dimensional structure of high-dimensional data. In MoE Transformers,
+experts can specialize in local regions of this manifold, while
+approximation and scaling rates can depend on the intrinsic dimension
+<span class="math inline">\(d\)</span> and target smoothness <span class="math inline">\(\beta\)</span>, rather than only on the ambient
+representation dimension <span class="math inline">\(D\)</span>.</p>
+</div>
+</section>
 
-    <h2>5. Further reading</h2>
-    <p>
-      This section will be completed with references, figures, and examples.
-    </p>
+      </article>
+    </div>
 
     <footer>
-      <p>Research note by Mansour Mayaki. Work in progress.</p>
+      <span>Last update: January 2026.</span>
     </footer>
   </div>
 </body>
