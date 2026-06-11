@@ -323,61 +323,152 @@
             I am particularly interested in collaborations on <strong>Green / frugal AI</strong> (compression, optimization, deployment),
             and <strong>time-series anomaly detection</strong> (health, industry, environment).
           </p>
+        <script>
+        const HAL_ID = "mansour-zoubeirou-a-mayaki";
+        const HAL_MAX_PUBLICATIONS = 8;
+      
+        function firstValue(value) {
+          if (Array.isArray(value)) return value[0] || "";
+          return value || "";
+        }
+      
+        function formatAuthors(authors) {
+          if (!Array.isArray(authors) || authors.length === 0) return "";
+          if (authors.length <= 4) return authors.join(", ");
+          return authors.slice(0, 4).join(", ") + ", et al.";
+        }
+      
+        function formatVenue(doc) {
+          return (
+            firstValue(doc.conferenceTitle_s) ||
+            firstValue(doc.journalTitle_s) ||
+            firstValue(doc.bookTitle_s) ||
+            firstValue(doc.docType_s) ||
+            "Publication"
+          );
+        }
+      
+        async function loadHALPublications() {
+          const list = document.getElementById("hal-publications");
+      
+          const params = new URLSearchParams({
+            q: `authIdHal_s:${HAL_ID}`,
+            rows: HAL_MAX_PUBLICATIONS,
+            sort: "producedDate_tdate desc",
+            fl: [
+              "title_s",
+              "authFullName_s",
+              "producedDateY_i",
+              "docType_s",
+              "journalTitle_s",
+              "conferenceTitle_s",
+              "bookTitle_s",
+              "uri_s",
+              "doiId_s",
+              "halId_s"
+            ].join(","),
+            wt: "json"
+          });
+      
+          const url = `https://api.archives-ouvertes.fr/search/?${params.toString()}`;
+      
+          try {
+            const response = await fetch(url);
+            if (!response.ok) {
+              throw new Error("HAL request failed");
+            }
+      
+            const data = await response.json();
+            const publications = data.response?.docs || [];
+      
+            list.innerHTML = "";
+      
+            if (publications.length === 0) {
+              list.innerHTML = "<li>No publication found on HAL.</li>";
+              return;
+            }
+      
+            publications.forEach((doc) => {
+              const title = firstValue(doc.title_s) || "Untitled publication";
+              const authors = formatAuthors(doc.authFullName_s);
+              const year = doc.producedDateY_i || "";
+              const venue = formatVenue(doc);
+              const halUrl = firstValue(doc.uri_s);
+              const doi = firstValue(doc.doiId_s);
+      
+              const item = document.createElement("li");
+      
+              const titleSpan = document.createElement("span");
+              titleSpan.className = "pub-title";
+      
+              if (halUrl) {
+                const titleLink = document.createElement("a");
+                titleLink.href = halUrl;
+                titleLink.target = "_blank";
+                titleLink.rel = "noopener";
+                titleLink.textContent = title;
+                titleSpan.appendChild(titleLink);
+              } else {
+                titleSpan.textContent = title;
+              }
+      
+              item.appendChild(titleSpan);
+              item.appendChild(document.createElement("br"));
+      
+              const meta = document.createElement("span");
+              meta.className = "meta";
+              meta.textContent = `${authors} — ${venue}${year ? ", " + year : ""}.`;
+              item.appendChild(meta);
+      
+              if (halUrl) {
+                item.appendChild(document.createTextNode(" · "));
+                const halLink = document.createElement("a");
+                halLink.href = halUrl;
+                halLink.target = "_blank";
+                halLink.rel = "noopener";
+                halLink.textContent = "HAL";
+                item.appendChild(halLink);
+              }
+      
+              if (doi) {
+                item.appendChild(document.createTextNode(" · "));
+                const doiLink = document.createElement("a");
+                doiLink.href = `https://doi.org/${doi}`;
+                doiLink.target = "_blank";
+                doiLink.rel = "noopener";
+                doiLink.textContent = "DOI";
+                item.appendChild(doiLink);
+              }
+      
+              list.appendChild(item);
+            });
+          } catch (error) {
+            list.innerHTML = `
+              <li>
+                Publications could not be loaded automatically.
+                Please see my
+                <a href="https://cv.hal.science/mansour-zoubeirou-a-mayaki">HAL profile</a>.
+              </li>
+            `;
+          }
+        }
+      
+        loadHALPublications();
+      </script>
         </section>
         <section class="card" id="publications">
           <h2>Selected publications</h2>
+        
           <p class="muted small">
-            A curated list (see full list on Google Scholar and HAL).
+            Publications automatically loaded from HAL. See also my
+            <a href="https://cv.hal.science/mansour-zoubeirou-a-mayaki">HAL profile</a>
+            and
+            <a href="https://scholar.google.com/citations?user=XMKFn6wAAAAJ&hl=fr">Google Scholar</a>.
           </p>
-
-          <ul class="pubs">
-            <li>
-              <span class="pub-title">Modeling Energy Consumption in Deep Learning Architectures Using Power Laws</span><br/>
-              <span class="meta">M. Mayaki, V. Charpenay — ECAI 2025.</span>
-              · <a href="https://dx.doi.org/10.3233/FAIA250900">DOI</a>
-              · <a href="https://hal.science/hal-04977474">HAL</a>
-            </li>
-
-            <li>
-              <span class="pub-title">AnoRand: A Semi-Supervised Deep Learning Anomaly Detection Method by Random Labeling</span><br/>
-              <span class="meta">M. Mayaki, M. Riveill — 2023 (preprint).</span>
-              · <a href="https://arxiv.org/abs/2305.18389">arXiv</a>
-              · <a href="https://hal.science/hal-04116457">HAL</a>
-            </li>
-
-            <li>
-              <span class="pub-title">Autoregressive based Drift Detection Method</span><br/>
-              <span class="meta">M. Mayaki, M. Riveill — 2022.</span>
-              · <a href="https://arxiv.org/abs/2203.04769">arXiv</a>
-              · <a href="https://ieeexplore.ieee.org/document/9892066">IEEE</a>
-              · <a href="https://hal.science/hal-03607737">HAL</a>
-            </li>
-
-            <li>
-              <span class="pub-title">Machinery Anomaly Detection using artificial neural networks and signature feature extraction</span><br/>
-              <span class="meta">M. Mayaki, M. Riveill — IJCNN 2023.</span>
-              · <a href="https://ieeexplore.ieee.org/document/10191814">IEEE</a>
-            </li>
-
-            <li>
-              <span class="pub-title">Multiple Inputs Neural Networks for Fraud Detection</span><br/>
-              <span class="meta">M. Mayaki, M. Riveill — MLCR 2022, pp. 8–13.</span>
-              · <a href="https://dx.doi.org/10.1109/MLCR57210.2022.00011">DOI</a>
-              · <a href="https://arxiv.org/abs/2203.05842">arXiv</a>
-              · <a href="https://hal.science/hal-03607722">HAL</a>
-            </li>
-
-            <li>
-              <span class="pub-title">Auto-encoder Based Medicare Fraud Detection</span><br/>
-              <span class="meta">M. Mayaki, M. Riveill — ASPAI 2022.</span>
-              · <a href="https://hal.science/hal-03847301">HAL</a>
-            </li>
+        
+          <ul class="pubs" id="hal-publications">
+            <li class="muted">Loading publications from HAL...</li>
           </ul>
-
-          <p class="small">
-            See: <a href="https://scholar.google.com/citations?user=XMKFn6wAAAAJ&hl=fr">Google Scholar</a> ·
-            <a href="https://cv.hal.science/mansour-zoubeirou-a-mayaki">HAL</a>
-          </p>
         </section>
 
         <section class="card" id="teaching">
