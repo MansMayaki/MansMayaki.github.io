@@ -1,0 +1,512 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mansour Mayaki — Academic Homepage</title>
+  <meta name="description" content="Academic homepage of Mansour Mayaki (Associate Professor / Maître de conférences), Université Lumière Lyon 2, LIRIS."/>
+  <style>
+    :root{
+      --bg:#ffffff;
+      --fg:#111827;
+      --muted:#4b5563;
+      --soft:#e5e7eb;
+      --soft2:#f3f4f6;
+      --link:#0f766e;
+      --link2:#115e59;
+      --max: 1060px;
+      --radius: 14px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      color:var(--fg);
+      background:var(--bg);
+      line-height:1.55;
+    }
+    a{color:var(--link); text-decoration:none}
+    a:hover{color:var(--link2); text-decoration:underline}
+    .wrap{
+      max-width:var(--max);
+      margin:0 auto;
+      padding:28px 18px 60px;
+    }
+    header{
+      display:flex;
+      gap:18px;
+      align-items:flex-start;
+      justify-content:space-between;
+      flex-wrap:wrap;
+      padding:18px 18px 10px;
+      border:1px solid var(--soft);
+      border-radius:var(--radius);
+      background:linear-gradient(180deg, var(--soft2), #fff);
+    }
+    .title h1{
+      margin:0;
+      font-size:1.75rem;
+      letter-spacing:-0.01em;
+    }
+    .title .subtitle{
+      margin-top:6px;
+      color:var(--muted);
+      font-size:1rem;
+    }
+    nav{
+      display:flex;
+      gap:14px;
+      flex-wrap:wrap;
+      align-items:center;
+      padding-top:6px;
+    }
+    nav a{
+      font-size:0.95rem;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid var(--soft);
+      background:#fff;
+    }
+    main{
+      margin-top:18px;
+      display:grid;
+      grid-template-columns: 280px 1fr;
+      gap:18px;
+    }
+    aside, section.card{
+      border:1px solid var(--soft);
+      border-radius:var(--radius);
+      background:#fff;
+    }
+    aside{
+      padding:16px;
+      position:sticky;
+      top:16px;
+      height:fit-content;
+    }
+    .card{
+      padding:18px;
+    }
+    h2{
+      margin:0 0 10px 0;
+      font-size:1.15rem;
+      letter-spacing:-0.01em;
+    }
+    h3{
+      margin:16px 0 8px 0;
+      font-size:1rem;
+    }
+    p{margin:0 0 10px 0; color:var(--fg)}
+    .muted{color:var(--muted)}
+    .pillrow{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      margin-top:10px;
+    }
+    .pill{
+      font-size:0.9rem;
+      padding:6px 10px;
+      border-radius:999px;
+      background:var(--soft2);
+      border:1px solid var(--soft);
+      color:var(--muted);
+      white-space:nowrap;
+    }
+    ul{margin:10px 0 0 18px; padding:0}
+    li{margin:8px 0}
+    .pubs li{margin:10px 0}
+    .pub-title{font-weight:600}
+    .meta{
+      font-size:0.95rem;
+      color:var(--muted);
+    }
+    .btn{
+      display:inline-block;
+      padding:10px 12px;
+      border-radius:12px;
+      border:1px solid var(--soft);
+      background:#fff;
+      font-weight:600;
+    }
+    .btn:hover{background:var(--soft2); text-decoration:none}
+    .small{font-size:0.92rem}
+    footer{
+      margin-top:18px;
+      color:var(--muted);
+      font-size:0.9rem;
+      text-align:center;
+    }
+
+    .note-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));
+      gap:14px;
+      margin-top:14px;
+    }
+    .note-card{
+      border:1px solid var(--soft);
+      border-radius:14px;
+      padding:16px;
+      background:#fff;
+      transition:transform .18s ease, box-shadow .18s ease;
+    }
+    .note-card:hover{
+      transform:translateY(-2px);
+      box-shadow:0 10px 24px rgba(17,24,39,.08);
+    }
+    .note-card h3{
+      margin:8px 0 8px;
+      font-size:1.02rem;
+    }
+    .note-card p{
+      margin-bottom:0;
+    }
+    .note-meta{
+      color:var(--muted);
+      font-size:.86rem;
+    }
+    .note-tags{
+      display:flex;
+      gap:6px;
+      flex-wrap:wrap;
+      margin-top:12px;
+    }
+    .note-tags span{
+      font-size:.78rem;
+      padding:3px 8px;
+      border-radius:999px;
+      background:var(--soft2);
+      border:1px solid var(--soft);
+      color:var(--muted);
+    }
+    @media (max-width: 860px){
+      main{grid-template-columns: 1fr}
+      aside{position:static}
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap" id="top">
+    <header>
+      <div class="title">
+        <h1>Mansour Mayaki</h1>
+        <div class="subtitle">
+          Associate Professor (Maître de conférences) — Université Lumière Lyon 2<br/>
+          Member of <strong>LIRIS</strong> (UMR 5205 CNRS) · Team <strong>Imagine</strong>
+        </div>
+        <div class="pillrow" aria-label="research keywords">
+          <span class="pill">Sustainable / Green AI</span>
+          <span class="pill">Efficient deep learning</span>
+          <span class="pill">Optimization & compression</span>
+          <span class="pill">Time-series anomaly detection</span>
+        </div>
+      </div>
+
+      <nav aria-label="page navigation">
+        <a href="#bio">Bio</a>
+        <a href="#research">Research</a>
+        <a href="#notes">Notes</a>
+        <a href="#projects">Projects</a>
+        <a href="#publications">Publications</a>
+        <a href="#teaching">Teaching</a>
+        <a href="#cv">CV</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <main>
+      <aside>
+        <h2 id="contact">Contact</h2>
+        <p class="small">
+          <strong>Email:</strong><br/>
+          <a href="mailto:mansour.mayaki@liris.cnrs.fr">mansour.mayaki@liris.cnrs.fr</a>
+        </p>
+        <p class="small">
+          <strong>Location:</strong><br/>
+          Lyon / Bron (France)
+        </p>
+
+        <h3>Links</h3>
+        <ul class="small">
+          <li><a href="https://scholar.google.com/citations?user=XMKFn6wAAAAJ&hl=fr">Google Scholar</a></li>
+          <li><a href="https://cv.hal.science/mansour-zoubeirou-a-mayaki">HAL CV</a></li>
+          <li><a href="https://liris.cnrs.fr/en/member-page/mansour-mayaki">LIRIS profile</a></li>
+          <li><a href="https://www.linkedin.com/in/mansour-mayaki">LinkedIn</a></li>
+        </ul>
+
+        <h3>Download</h3>
+        <p class="small">
+          <a class="btn" href="assets/CV.pdf">Download CV (PDF)</a>
+        </p>
+      </aside>
+
+      <div>
+        <section class="card" id="bio">
+          <h2>Short bio</h2>
+          <p>
+            Since September 2025, I am an Associate Professor (Maître de conférences) at Université Lumière Lyon 2 and a member of LIRIS.
+            From 2024 to 2025, I was a postdoctoral researcher at Mines Saint-Étienne.
+            I earned my PhD in Computer Science from Université Côte d’Azur and hold engineering degrees from ENSAI Rennes and a Master of Science in Mathematics and Applications Specialization: Pure Mathematics.
+            My research spans deep learning, anomaly detection, computational cost, energy, and sustainable AI.
+          </p>
+        </section>
+
+        <section class="card" id="research">
+          <h2>Research</h2>
+          <p>
+            I develop frugal / Green AI methods to reduce the carbon and energy footprint of machine learning models.
+            I study optimization and compression techniques tailored to resource-constrained settings.
+            In parallel, I work on anomaly and drift detection for time-series data, with applications in health, industry, and the environment.
+          </p>
+
+          <h3>Topics</h3>
+          <ul>
+            <li>Efficient deep learning: training/inference cost, energy-aware evaluation, scaling laws</li>
+            <li>Model optimization & compression for constrained deployments</li>
+            <li>Anomaly and drift detection in time series (predictive maintenance, health monitoring)</li>
+          </ul>
+        </section>
+
+        <section class="card" id="notes">
+          <h2>Notes &amp; Mini-Courses</h2>
+          <p>
+            I maintain a small collection of research notes, mini-courses, and technical explanations related to my research interests.
+            These notes are intended for students, collaborators, and researchers interested in efficient machine learning,
+            anomaly detection, optimization, and geometric approaches to AI.
+          </p>
+
+          <div class="note-grid">
+            <article class="note-card">
+              <div class="note-meta">Mini-course · Machine Learning · Work in progress</div>
+              <h3><a href="notes/manifolds.html">Manifolds in Machine Learning</a></h3>
+              <p class="small">
+                A short introduction to manifolds, the manifold hypothesis, representation learning,
+                dimensionality reduction, and links with Machine learning.
+              </p>
+              <div class="note-tags">
+                <span>Manifolds</span><span>Geometry</span><span>ML theory</span>
+              </div>
+            </article>
+
+            <article class="note-card">
+              <div class="note-meta">Research note · Sustainable AI</div>
+              <h3><a href="notes/greenAi.html">Green AI and Efficient Deep Learning</a></h3>
+              <p class="small">
+                Notes on computational cost, energy consumption, carbon footprint, compression,
+                and efficiency-aware evaluation of learning systems.
+              </p>
+              <div class="note-tags">
+                <span>Green AI</span><span>Efficiency</span><span>Compression</span>
+              </div>
+            </article>
+
+            <article class="note-card">
+              <div class="note-meta">Technical note · Time series</div>
+              <h3><a href="notes/anomalyDetection.html">Anomaly Detection in Time Series</a></h3>
+              <p class="small">
+                A concise overview of anomaly detection settings, reconstruction-based methods,
+                forecasting-based methods, and evaluation issues.
+              </p>
+              <div class="note-tags">
+                <span>Anomaly detection</span><span>Time series</span><span>Deep learning</span>
+              </div>
+            </article>
+          </div>
+        </section>
+
+<section class="card" id="projects">
+
+          <h3>Collaboration interests</h3>
+          <p class="small">
+            I am particularly interested in collaborations on <strong>Green / frugal AI</strong> (compression, optimization, deployment),
+            and <strong>time-series anomaly detection</strong> (health, industry, environment).
+          </p>
+</section>
+        <section class="card" id="publications">
+          <h2>Selected publications</h2>
+
+          <p class="muted small">
+            Publications are loaded automatically from HAL. See also my
+            <a href="https://cv.hal.science/mansour-zoubeirou-a-mayaki">HAL profile</a>
+            and
+            <a href="https://scholar.google.com/citations?user=XMKFn6wAAAAJ&hl=fr">Google Scholar</a>.
+          </p>
+
+          <ul class="pubs" id="hal-publications">
+            <li class="muted">Loading publications from HAL...</li>
+          </ul>
+
+          <noscript>
+            <p class="small">
+              JavaScript is required to load publications automatically.
+              Please see my
+              <a href="https://cv.hal.science/mansour-zoubeirou-a-mayaki">HAL profile</a>.
+            </p>
+          </noscript>
+        </section>
+
+        <section class="card" id="teaching">
+          <h2>Teaching</h2>
+          <ul>
+            <li>Introduction to Computer Science & Artificial Intelligence (Université Lumière Lyon 2)</li>
+            <li>Introduction to Computer Science (SKEMA Business School)</li>
+            <li>Management Information Systems (SKEMA Business School)</li>
+            <li>Research project supervision (MSc Data Science & Artificial Intelligence, Université Côte d’Azur)</li>
+          </ul>
+        </section>
+
+        <section class="card" id="cv">
+          <h2>CV</h2>
+          <p>
+            <a class="btn" href="assets/CV.pdf">Download CV (PDF)</a>
+          </p>
+        </section>
+      </div>
+    </main>
+
+    <footer>
+      <span>Last update: January 2026.</span>
+    </footer>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const HAL_ID = "mansour-zoubeirou-a-mayaki";
+      const HAL_MAX_PUBLICATIONS = 8;
+
+      function firstValue(value) {
+        if (Array.isArray(value)) return value[0] || "";
+        return value || "";
+      }
+
+      function formatAuthors(authors) {
+        if (!Array.isArray(authors) || authors.length === 0) return "";
+        if (authors.length <= 4) return authors.join(", ");
+        return authors.slice(0, 4).join(", ") + ", et al.";
+      }
+
+      function formatVenue(doc) {
+        return (
+          firstValue(doc.conferenceTitle_s) ||
+          firstValue(doc.journalTitle_s) ||
+          firstValue(doc.bookTitle_s) ||
+          firstValue(doc.docType_s) ||
+          "Publication"
+        );
+      }
+
+      async function loadHALPublications() {
+        const list = document.getElementById("hal-publications");
+        if (!list) return;
+
+        const params = new URLSearchParams({
+          q: `authIdHal_s:${HAL_ID}`,
+          rows: HAL_MAX_PUBLICATIONS,
+          sort: "producedDate_tdate desc",
+          fl: [
+            "title_s",
+            "authFullName_s",
+            "producedDateY_i",
+            "docType_s",
+            "journalTitle_s",
+            "conferenceTitle_s",
+            "bookTitle_s",
+            "uri_s",
+            "doiId_s",
+            "halId_s"
+          ].join(","),
+          wt: "json"
+        });
+
+        const url = `https://api.archives-ouvertes.fr/search/?${params.toString()}`;
+
+        try {
+          const response = await fetch(url);
+          if (!response.ok) throw new Error("HAL request failed");
+
+          const data = await response.json();
+          const publications = data.response?.docs || [];
+
+          if (publications.length === 0) {
+            list.innerHTML = "<li>No publication found on HAL.</li>";
+            return;
+          }
+
+          list.innerHTML = "";
+
+          publications.forEach((doc) => {
+            const title = firstValue(doc.title_s) || "Untitled publication";
+            const authors = formatAuthors(doc.authFullName_s);
+            const year = doc.producedDateY_i || "";
+            const venue = formatVenue(doc);
+            const halUrl = firstValue(doc.uri_s);
+            const doi = firstValue(doc.doiId_s);
+
+            const item = document.createElement("li");
+
+            const titleSpan = document.createElement("span");
+            titleSpan.className = "pub-title";
+
+            if (halUrl) {
+              const titleLink = document.createElement("a");
+              titleLink.href = halUrl;
+              titleLink.target = "_blank";
+              titleLink.rel = "noopener";
+              titleLink.textContent = title;
+              titleSpan.appendChild(titleLink);
+            } else {
+              titleSpan.textContent = title;
+            }
+
+            item.appendChild(titleSpan);
+            item.appendChild(document.createElement("br"));
+
+            const meta = document.createElement("span");
+            meta.className = "meta";
+            meta.textContent = `${authors} — ${venue}${year ? ", " + year : ""}.`;
+            item.appendChild(meta);
+
+            if (halUrl) {
+              item.appendChild(document.createTextNode(" · "));
+              const halLink = document.createElement("a");
+              halLink.href = halUrl;
+              halLink.target = "_blank";
+              halLink.rel = "noopener";
+              halLink.textContent = "HAL";
+              item.appendChild(halLink);
+            }
+
+            if (doi) {
+              item.appendChild(document.createTextNode(" · "));
+              const doiLink = document.createElement("a");
+              doiLink.href = `https://doi.org/${doi}`;
+              doiLink.target = "_blank";
+              doiLink.rel = "noopener";
+              doiLink.textContent = "DOI";
+              item.appendChild(doiLink);
+            }
+
+            list.appendChild(item);
+          });
+        } catch (error) {
+          list.innerHTML = `
+            <li>
+              Publications could not be loaded automatically.
+              Please see my
+              <a href="https://cv.hal.science/mansour-zoubeirou-a-mayaki">HAL profile</a>.
+            </li>
+          `;
+        }
+      }
+
+      loadHALPublications();
+    });
+  </script>
+
+</body>
+</html>
+
+
